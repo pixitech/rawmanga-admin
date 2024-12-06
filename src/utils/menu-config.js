@@ -10,16 +10,16 @@ export const MENU_CONFIG = [
 			},
 		],
 	},
-	{
-		title: "Public",
-		icon: "/images/note-text.svg",
-		link: "/public",
-		router: ["/public", "/public/create", "/public/:id", "/public/", "/public/create/", "/public/:id/"],
-	},
-	{
-		title: "Contact",
-		icon: "/images/note-text.svg",
-		link: "/contact",
-		router: ["/contact"],
-	},
+	// {
+	// 	title: "Public",
+	// 	icon: "/images/note-text.svg",
+	// 	link: "/public",
+	// 	router: ["/public", "/public/create", "/public/:id", "/public/", "/public/create/", "/public/:id/"],
+	// },
+	// {
+	// 	title: "Contact",
+	// 	icon: "/images/note-text.svg",
+	// 	link: "/contact",
+	// 	router: ["/contact"],
+	// },
 ];

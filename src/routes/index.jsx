@@ -29,7 +29,7 @@ export const AppRoutes = () => {
 				<Route path={"/public/:id"} element={<PublicEditContainer />} />
 				<Route path={"/contact"} element={<ContactContainer />} />
 			</Route>
-			<Route path="/" element={<Navigate to="/anitaku" />} />
+			<Route path="/" element={<Navigate to="/rumanhua" />} />
 		</Routes>
 	);
 };
