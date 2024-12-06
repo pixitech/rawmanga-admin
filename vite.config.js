@@ -18,5 +18,11 @@ export default ({ mode }) => {
 			},
 		},
 		plugins: [react()],
+		server: {
+			port: process.env.VITE_PORT,
+		},
+		preview: {
+			port: process.env.VITE_PORT,
+		},
 	});
 };
