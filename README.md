@@ -1,1 +1,3 @@
-# rawmanga-admin
+# anisage-admin
+
+- Node 16 or higher

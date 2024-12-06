@@ -1,0 +1,2 @@
+export const IS_NOT_FIRT_LOGIN = "IS_NOT_FIRT_LOGIN";
+export const LIST_USER_LOGINED = "LIST_USER_LOGINED";

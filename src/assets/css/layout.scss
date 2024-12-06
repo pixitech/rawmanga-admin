@@ -1,0 +1,138 @@
+.default-background {
+	background: linear-gradient(
+		247.03deg,
+		rgba(233, 112, 0, 0.46) 18.75%,
+		rgba(255, 235, 216, 0.19) 73.35%,
+		#d6fdff 100%
+	);
+}
+
+.hidden-menu {
+	width: auto;
+	min-width: 60px !important;
+}
+
+.hidden-menu:has(.menu:hover) {
+	min-width: 270px !important;
+	@media screen and (max-width: 768px) {
+		min-width: 180px !important;
+	}
+	.hidden {
+		display: block !important;
+	}
+	.icon-pig {
+		left: 0px;
+	}
+}
+
+.menu-customer {
+	position: relative;
+	background: #ffffffcc;
+	border-right: 1.5px solid #ffffff;
+	padding: 0px 0px 20px 0px;
+	gap: 16px;
+	border: 0px 1.5px 0px 0px;
+	opacity: 0px;
+	min-width: 270px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position-y: bottom;
+	background-position-x: right;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	@media screen and (max-width: 768px) {
+		min-width: 180px;
+	}
+
+	.hidden {
+		display: none;
+		&:hover {
+			display: block !important;
+		}
+	}
+	.icon-pig {
+		left: -30px;
+	}
+
+	.logo {
+		width: 32px;
+		height: 30px;
+		margin: 15px 0;
+	}
+
+	.menu-link {
+		text-decoration: none;
+		cursor: pointer;
+		color: #768394;
+		&:hover {
+			color: #f38d03;
+		}
+	}
+
+	.menu-icon {
+		line-height: 15px;
+		margin-right: 10px;
+	}
+	.menu-item {
+		color: #768394;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 24px;
+		gap: 8px;
+	}
+	.menu-item-list {
+		position: relative;
+		height: 40px;
+
+		&:hover {
+			.menu-item {
+				color: #f38d03;
+			}
+			color: #f38d03;
+			img {
+				filter: invert(47%) sepia(98%) saturate(489%) hue-rotate(357deg) brightness(105%) contrast(102%);
+			}
+			svg {
+				color: #f38d03;
+			}
+		}
+	}
+	.container {
+		height: 100%;
+	}
+	.icon-active {
+		width: 4px;
+		height: 100%;
+		position: absolute;
+		left: 0px;
+		border-radius: 0 99px 99px 0;
+		background-color: #f38d03;
+	}
+	.active {
+		color: #f38d03;
+		.menu-item {
+			color: #f38d03;
+		}
+		img {
+			filter: invert(47%) sepia(98%) saturate(489%) hue-rotate(357deg) brightness(105%) contrast(102%);
+		}
+		svg {
+			color: #f38d03;
+		}
+	}
+}
+
+.link {
+	text-decoration: none;
+	cursor: pointer;
+	color: #768394;
+	&:hover {
+		color: #f38d03;
+		text-decoration: underline;
+	}
+}
+
+.min-width-100 {
+	min-width: 100px
+}

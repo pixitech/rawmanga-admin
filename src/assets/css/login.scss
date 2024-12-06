@@ -1,0 +1,41 @@
+.input-login {
+	height: auto !important;
+	border-radius: 6px !important;
+	border-top-left-radius: 6px !important;
+	border-top-right-radius: 6px !important;
+	background: var(--color-neutral-white-100, #ffffff);
+	border: 1px solid #dddddd;
+	box-shadow: none;
+	input {
+		padding: 10px 16px !important;
+		height: auto !important;
+	}
+	input::placeholder {
+		color: var(--Admin-Color-Neutral-1, #768394) !important
+	}
+}
+
+.input-area {
+	overflow: auto;
+
+	&::-webkit-scrollbar-track {
+		background-color: rgba(194, 194, 194, 0.6);
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar {
+		width: 4px;
+		height: 4px;
+		background-color: rgba(194, 194, 194, 0.6);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(150, 150, 150, 0.7);
+		border: 0 solid #555555;
+		width: 6px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+	}
+}
+
