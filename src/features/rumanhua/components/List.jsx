@@ -2,7 +2,6 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
 import ActionComponent from "@/components/action/ActionComponent";
 import ButtonSearch from "@/components/button/ButtonSearch";
 import CardContainer from "@/components/card/CardContainer";
@@ -28,8 +27,6 @@ const ListComponent = () => {
 
 	let rows = data?.items ? data.items : [];
 	const total = data?.total ?? 0;
-	const totalPending = data?.total_pending ?? 0;
-	const totalCompleted = data?.total_completed ?? 0;
 	const totalPage = Math.ceil(total / rowsPerPage);
 
 	const navigate = useNavigate();
@@ -144,13 +141,7 @@ const ListComponent = () => {
 						<Box className={"rowy-center flex-row-wrap"}>
 							<Box className="d-flex">
 								<Typography variant="h5" fontSize="20px" mr={1.25}>
-									Total: {total},
-								</Typography>
-								<Typography variant="h5" fontSize="20px" mr={1.25}>
-									Pending: {totalPending},
-								</Typography>
-								<Typography variant="h5" fontSize="20px" mr={1.25}>
-									Completed: {totalCompleted}
+									Total Manga: {total}
 								</Typography>
 							</Box>
 						</Box>

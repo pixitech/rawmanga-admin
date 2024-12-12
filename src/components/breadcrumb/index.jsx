@@ -1,15 +1,22 @@
 import { Box, Breadcrumbs, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useBreadcrumbStore } from "@/stores";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Breadcrumb({ isFixed = true }) {
 	const { breadcrumbs } = useBreadcrumbStore();
+	const navigate = useNavigate();
 	let paths = [];
 	if (breadcrumbs?.breadcrumb && breadcrumbs?.breadcrumb?.length > 0) {
 		let breadcrumb = breadcrumbs?.breadcrumb?.length > 0 ? breadcrumbs?.breadcrumb : [];
 		breadcrumb?.map((item, index) => {
-			if (item?.path) {
+			if (typeof item?.path === "number") {
+				paths.push(
+					<div className="link" style={{ fontSize: "16px", fontWeight: 600 }} key={index} onClick={() => navigate(-1)}>
+						{item?.title}
+					</div>
+				);
+			} else if (item?.path) {
 				paths.push(
 					<Link className="link" style={{ fontSize: "16px" }} key={index} to={item?.path}>
 						{item?.title}
@@ -32,7 +39,7 @@ function Breadcrumb({ isFixed = true }) {
 			<Typography fontSize="27px" fontWeight={700}>
 				{breadcrumbs?.title && breadcrumbs?.title?.length > 30
 					? breadcrumbs?.title.slice(0, 48) + "..."
-					: breadcrumbs?.title ?? ""}
+					: (breadcrumbs?.title ?? "")}
 			</Typography>
 			<Breadcrumbs
 				className="breadcrumb"

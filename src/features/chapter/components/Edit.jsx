@@ -1,22 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import CardContainer from "@/components/card/CardContainer";
-import FilmComponent from "@/components/film-component/FilmComponent";
 import FormWrapper from "@/components/form/form-wraper";
 import InputField from "@/components/form/input-field";
 import SelectField from "@/components/form/select-field";
 import Loading from "@/components/loading";
 import { CHAPTER_STATE, LIST_CHAPTER_STATUS } from "@/constant/title";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Modal, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { schemaForm2 } from "./const/schema";
 import { useGetImageChapter } from "@/hooks/manga";
 import { useParams } from "react-router-dom";
+import ButtonAdd from "@/components/button/ButtonAdd";
+import CancelIcon from "@mui/icons-material/Cancel";
+import ReadChapter from "./reading";
 
 const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 	let { id } = useParams();
 	const { data } = useGetImageChapter(id);
-	console.log("data", data);
-
+	const [isPreview, setIsPreview] = useState(false);
 	const [title, setTitle] = useState();
 	const [values, setValues] = useState({
 		id: id,
@@ -29,7 +30,6 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 		type: value?.category_subs?.[0]?.type,
 	});
 	const [isReset, setIsReset] = useState(false);
-	const [selectFilm, setSelectFilm] = useState();
 
 	useEffect(() => {
 		let avatar = null;
@@ -65,6 +65,10 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 		}
 	}, [value]);
 
+	const handlePreviewChapter = () => {
+		setIsPreview(!isPreview);
+	};
+
 	return (
 		<>
 			<Loading isLoading={isLoadingDefault} />
@@ -83,10 +87,28 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 								<Box>
 									<Grid container columns={24} spacing={2.5}>
 										<Grid item xs={24} md={24}>
-											<Box>
+											<Box
+												sx={{
+													display: "flex",
+													flexDirection: "row",
+													justifyContent: "space-between",
+													alignItems: "center",
+												}}
+											>
 												<Typography variant="h5" fontSize="20px" mr={1.25} fontWeight={600}>
-													Information
+													Information Chapter
 												</Typography>
+												<ButtonAdd
+													isHiddenIcon={true}
+													handleChange={handlePreviewChapter}
+													type="button"
+													label={"Preview"}
+													disabled={
+														![CHAPTER_STATE[3], CHAPTER_STATE[4], CHAPTER_STATE[5]].includes(
+															CHAPTER_STATE[value?.state]
+														)
+													}
+												/>
 											</Box>
 										</Grid>
 										<Grid item xs={24} md={12}>
@@ -167,7 +189,47 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 					);
 				}}
 			</FormWrapper>
-			{selectFilm && <FilmComponent setSelectFilm={setSelectFilm} selectFilm={selectFilm} />}
+			<Modal open={isPreview} onClose={() => setIsPreview(false)}>
+				<Box
+					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						borderRadius: "6px",
+						width: 900,
+						maxHeight: 800,
+						bgcolor: "background.paper",
+						borderColor: "background.paper",
+						boxShadow: 24,
+						p: "10px",
+						display: "flex",
+						flexDirection: "column",
+						"&:focus": {
+							outline: "none",
+						},
+					}}
+				>
+					<Box className="rowy-center-end">
+						<Box
+							className="cursor-pointer"
+							onClick={() => setIsPreview(false)}
+							sx={{
+								".MuiSvgIcon-root": {
+									color: "#768394",
+									width: "24px",
+									height: "24px",
+								},
+							}}
+						>
+							<CancelIcon />
+						</Box>
+					</Box>
+					<Box sx={{ height: "100%", overflow: "auto" }}>
+						<ReadChapter data={data} />
+					</Box>
+				</Box>
+			</Modal>
 		</>
 	);
 };

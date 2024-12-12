@@ -92,7 +92,7 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 										<Grid item xs={24} md={24}>
 											<Box>
 												<Typography variant="h5" fontSize="20px" mr={1.25} fontWeight={600}>
-													Information
+													Information Manga
 												</Typography>
 											</Box>
 										</Grid>

@@ -1,4 +1,4 @@
-import ChapterEditContainer from "@/pages/chapter/edit";
+import ChapterEditContainer from "@/pages/rumanhua copy/edit";
 import ContactContainer from "@/pages/contact";
 import ForgotPasswordContainer from "@/pages/forgot-password";
 import LoginFormContainer from "@/pages/login";

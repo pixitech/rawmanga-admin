@@ -6,7 +6,7 @@ import { Box, Grid } from "@mui/material";
 const LoginFormContainer = () => {
 	return (
 		<>
-			<Head title="AniSage" />
+			<Head title="RawManga" />
 			<Grid container columns={24} spacing={1}>
 				<Grid item style={{ width: "584px" }}>
 					<Content

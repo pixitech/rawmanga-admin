@@ -6,7 +6,7 @@ import { Box, Grid } from "@mui/material";
 const ForgotPasswordContainer = () => {
 	return (
 		<>
-			<Head title="AniSage" />
+			<Head title="RawManga" />
 			<Grid container columns={24} spacing={1}>
 				<Grid item xs={24} md={10}>
 					<Content
