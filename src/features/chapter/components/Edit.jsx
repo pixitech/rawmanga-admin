@@ -103,11 +103,7 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 													handleChange={handlePreviewChapter}
 													type="button"
 													label={"Preview"}
-													disabled={
-														![CHAPTER_STATE[3], CHAPTER_STATE[4], CHAPTER_STATE[5]].includes(
-															CHAPTER_STATE[value?.state]
-														)
-													}
+													disabled={!data?.length}
 												/>
 											</Box>
 										</Grid>

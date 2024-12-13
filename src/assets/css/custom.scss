@@ -834,3 +834,9 @@ svg:hover {
 .play-icon:hover {
   fill: #f9ab00;
 }
+
+.canvas-container-vertical {
+  max-width: 100%;
+  max-height: 100%;
+  pointer-events: none;
+}
