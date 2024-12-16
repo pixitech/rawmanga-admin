@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const TextOverlayImage = ({ src, fontSize = 30, color, value }) => {
+const TextOverlayImage = ({ src, fontSize = 30, color, value, isCompare = false }) => {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
@@ -53,7 +53,12 @@ const TextOverlayImage = ({ src, fontSize = 30, color, value }) => {
 		image.src = src;
 	}, [src, value, fontSize, color]);
 
-	return <canvas ref={canvasRef} className="canvas-container-vertical"></canvas>;
+	return (
+		<canvas
+			ref={canvasRef}
+			className={`${isCompare ? "compare-canvas-container-vertical" : "canvas-container-vertical"}`}
+		></canvas>
+	);
 };
 
 export default TextOverlayImage;

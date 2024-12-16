@@ -40,11 +40,11 @@ const GridList = ({ columns, rows, handleChangePage, totalPage, rowsPerPage, pag
 							rowList.map((row, index) => {
 								return (
 									<TableRow hover role="checkbox" tabIndex={-1} key={`${index}`}>
-										{columns.map((column, index) => {
+										{columns.map((column, indexColumns) => {
 											const value = row[column.id];
 											return (
 												<TableCell key={column.id} align={column.align}>
-													{column.format ? column.format(value, row) : value}
+													{column.format ? column.format(value, row, index + 1) : value}
 												</TableCell>
 											);
 										})}

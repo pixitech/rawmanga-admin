@@ -1,17 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import ButtonAdd from "@/components/button/ButtonAdd";
 import CardContainer from "@/components/card/CardContainer";
 import FormWrapper from "@/components/form/form-wraper";
 import InputField from "@/components/form/input-field";
 import SelectField from "@/components/form/select-field";
 import Loading from "@/components/loading";
 import { CHAPTER_STATE, LIST_CHAPTER_STATUS } from "@/constant/title";
+import { useGetImageChapter } from "@/hooks/manga";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { Box, Grid, Modal, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { schemaForm2 } from "./const/schema";
-import { useGetImageChapter } from "@/hooks/manga";
 import { useParams } from "react-router-dom";
-import ButtonAdd from "@/components/button/ButtonAdd";
-import CancelIcon from "@mui/icons-material/Cancel";
+import { schemaForm2 } from "./const/schema";
+import ListImageChapter from "./list-image-chapter";
 import ReadChapter from "./reading";
 
 const EditComponent = ({ value, isLoadingDefault, refetch }) => {
@@ -185,6 +186,7 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 					);
 				}}
 			</FormWrapper>
+			<ListImageChapter data={data} />
 			<Modal open={isPreview} onClose={() => setIsPreview(false)}>
 				<Box
 					sx={{

@@ -18,7 +18,6 @@ const ReadChapter = ({ data }) => {
 			text_coordinates: listTextTranslate,
 		};
 	});
-	console.log("comicList", comicList);
 
 	return <ReadingVertical comicList={comicList} />;
 };

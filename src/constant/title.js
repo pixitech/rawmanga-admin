@@ -124,3 +124,13 @@ export const LIST_CHAPTER_STATUS = {
 	TRANSLATING: { key: "TRANSLATING", title: "Translating" },
 	TRANSLATED: { key: "TRANSLATED", title: "Translated" },
 };
+
+export const IMAGE_CHAPTER_STATE = {
+	1: "PENDING",
+	2: "PROCESSED",
+};
+
+export const IMAGE_CHAPTER_STATE_TO_STATUS = {
+	PENDING: "Pending",
+	PROCESSED: "Processed",
+};
