@@ -79,7 +79,7 @@ const ListComponent = ({ idManga }) => {
 			format: (value, data) => {
 				const state = CHAPTER_STATE[value];
 				const status = CHAPTER_STATE_TO_STATUS[state];
-				return <StatusComponent value={status} />;
+				return <StatusComponent value={status} origin_state={value} />;
 			},
 		},
 		{

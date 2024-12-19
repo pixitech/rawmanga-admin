@@ -24,7 +24,7 @@ const ListImageChapter = ({ data = [] }) => {
 
 			return {
 				...textItem,
-				text: textTranslations?.translated_text || textItem?.text,
+				text: textTranslations?.translated_text || "",
 			};
 		});
 
@@ -58,7 +58,7 @@ const ListImageChapter = ({ data = [] }) => {
 			format: (value, data) => {
 				const state = IMAGE_CHAPTER_STATE[value];
 				const status = IMAGE_CHAPTER_STATE_TO_STATUS[state];
-				return <StatusComponent value={status} />;
+				return <StatusComponent value={status} origin_state={value} />;
 			},
 		},
 		{

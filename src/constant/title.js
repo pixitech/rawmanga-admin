@@ -130,9 +130,11 @@ export const LIST_CHAPTER_STATUS = {
 export const IMAGE_CHAPTER_STATE = {
 	1: "PENDING",
 	2: "PROCESSED",
+	3: "TRANSLATED",
 };
 
 export const IMAGE_CHAPTER_STATE_TO_STATUS = {
 	PENDING: "Pending",
 	PROCESSED: "Processed",
+	TRANSLATED: "Translated",
 };
