@@ -160,8 +160,8 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 										<Grid item xs={24} md={24}>
 											<Box>
 												<InputField
-													label="Other name"
-													placeholder="Other name"
+													label="Original name"
+													placeholder="Original name"
 													registration={register("other_name")}
 													error={errors["other_name"]}
 													disabled={true}

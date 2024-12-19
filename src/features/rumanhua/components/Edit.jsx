@@ -126,8 +126,14 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 															class: "input-inactive",
 														},
 														{
-															value: LIST_MANGA_STATUS.CRAWLING_CHAPTER.key,
-															title: LIST_MANGA_STATUS.CRAWLING_CHAPTER.title,
+															value: LIST_MANGA_STATUS.CRAWLING_INFO_CHAPTER.key,
+															title: LIST_MANGA_STATUS.CRAWLING_INFO_CHAPTER.title,
+															class: "input-inactive",
+														},
+														{
+															value: LIST_MANGA_STATUS.TRANSLATING_CHAPTERS.key,
+															title: LIST_MANGA_STATUS.TRANSLATING_CHAPTERS.title,
+															class: "input-inactive",
 														},
 														{
 															value: LIST_MANGA_STATUS.WAITING_NEW_CHAPTER.key,
@@ -162,8 +168,8 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 										<Grid item xs={24} md={24}>
 											<Box>
 												<InputField
-													label="Other name"
-													placeholder="Other name"
+													label="Origin name"
+													placeholder="Origin name"
 													registration={register("other_name")}
 													error={errors["other_name"]}
 													disabled={true}

@@ -66,9 +66,9 @@ const ListImageChapter = ({ data = [] }) => {
 			label: "Action",
 			format: (value, data) => {
 				return (
-					<a href={`/chapter/${data?._id}`}>
-						<ActionComponent onEdit={() => {}} isHiddenDelete={false} />
-					</a>
+					// <a href={`/chapter/${data?._id}`}>
+					<ActionComponent onEdit={() => {}} isHiddenDelete={false} />
+					// </a>
 				);
 			},
 		},

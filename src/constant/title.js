@@ -90,9 +90,13 @@ export const LIST_MANGA_STATUS = {
 		key: "CRAWLED_DETAIL_INFO",
 		title: "Crawled detail info",
 	},
-	CRAWLING_CHAPTER: {
-		key: "CRAWLING_CHAPTER",
-		title: "Crawling chapter",
+	CRAWLING_INFO_CHAPTER: {
+		key: "CRAWLING_INFO_CHAPTER",
+		title: "Crawling info chapter",
+	},
+	TRANSLATING_CHAPTERS: {
+		key: "TRANSLATING_CHAPTERS",
+		title: "Translating chapter",
 	},
 	WAITING_NEW_CHAPTER: {
 		key: "WAITING_NEW_CHAPTER",
