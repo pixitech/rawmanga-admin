@@ -56,11 +56,7 @@ const ListComponent = ({ idManga }) => {
 					title = zhTitle ? zhTitle.title : null;
 				}
 				return (
-					<LineComponent
-						className={"cursor-pointer"}
-						line1={title}
-						onClick={() => navigate(`/rumanhua/${data?._id}`)}
-					/>
+					<LineComponent className={"cursor-pointer"} line1={title} onClick={() => navigate(`/chapter/${data?._id}`)} />
 				);
 			},
 		},
