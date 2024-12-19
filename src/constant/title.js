@@ -71,14 +71,16 @@ export const STATUS_REVIEW_TITLE_ENUM = {
 export const MANGA_STATE = {
 	0: "CRAWLED_BASIC_INFO",
 	1: "CRAWLED_DETAIL_INFO",
-	2: "CRAWLING_CHAPTER",
-	3: "WAITING_NEW_CHAPTER",
+	2: "CRAWLING_INFO_CHAPTER",
+	3: "TRANSLATING_CHAPTERS",
+	4: "WAITING_NEW_CHAPTER",
 };
 
 export const MANGA_STATE_TO_STATUS = {
 	CRAWLED_BASIC_INFO: "Crawled basic info",
 	CRAWLED_DETAIL_INFO: "Crawled detail info",
-	CRAWLING_CHAPTER: "Crawling chapter",
+	CRAWLING_INFO_CHAPTER: "Crawling info chapter",
+	TRANSLATING_CHAPTERS: "Translating chapter",
 	WAITING_NEW_CHAPTER: "Waiting new chapter",
 };
 

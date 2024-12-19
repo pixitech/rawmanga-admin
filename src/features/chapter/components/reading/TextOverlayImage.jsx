@@ -28,8 +28,12 @@ const TextOverlayImage = ({ src, fontSize = 30, color, value, isCompare = false 
 			const lineHeight = fontSize * 1.2;
 			const totalTextHeight = lines.length * lineHeight;
 			const startY = y + (boxHeight - totalTextHeight) / 2 + lineHeight / 2;
+			ctx.lineWidth = 4;
+			ctx.strokeStyle = "white";
 			lines.forEach((line, index) => {
-				ctx.fillText(line.trim(), x, startY + index * lineHeight);
+				const textY = startY + index * lineHeight;
+				ctx.strokeText(line.trim(), x, textY);
+				ctx.fillText(line.trim(), x, textY);
 			});
 		};
 

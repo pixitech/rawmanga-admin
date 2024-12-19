@@ -94,7 +94,7 @@ const ListComponent = () => {
 			format: (value, data) => {
 				const state = MANGA_STATE[value];
 				const status = MANGA_STATE_TO_STATUS[state];
-				return <StatusComponent value={status} />;
+				return <StatusComponent value={status} origin_state={value} />;
 			},
 		},
 		{

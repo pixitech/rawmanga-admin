@@ -7,7 +7,7 @@ import {
 } from "@/constant/title";
 import { Chip } from "@mui/material";
 
-const StatusComponent = ({ value, label }) => {
+const StatusComponent = ({ value, label, origin_state }) => {
 	let style = {
 		backgroundColor: "#EFF1F5",
 		border: "1px solid #C6C6C6",
@@ -205,7 +205,17 @@ const StatusComponent = ({ value, label }) => {
 			};
 			break;
 	}
-	return <Chip label={label ?? labelValue} sx={style} />;
+	return (
+		<Chip
+			label={
+				<div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "5px" }}>
+					{origin_state ? `${origin_state} - ` : "0 - "}
+					{label ?? labelValue}
+				</div>
+			}
+			sx={style}
+		/>
+	);
 };
 
 export default StatusComponent;
