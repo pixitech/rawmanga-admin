@@ -25,7 +25,7 @@ const StatusComponent = ({ value, label, origin_state }) => {
 	let labelValue = value;
 	switch (value) {
 		case STATUS_MAPPING_TITLE_ENUM.SUCCESSFULLY_MAPPED.key:
-		case IMAGE_CHAPTER_STATE_TO_STATUS.PROCESSED:
+		case IMAGE_CHAPTER_STATE_TO_STATUS.TRANSLATED:
 			labelValue = value || STATUS_MAPPING_TITLE_ENUM.SUCCESSFULLY_MAPPED.title;
 			style = {
 				backgroundColor: "#EFF8E5",
@@ -171,6 +171,23 @@ const StatusComponent = ({ value, label, origin_state }) => {
 				fontSize: "12px",
 				lineHeight: "18px",
 				color: "#338FEB",
+				height: "22px",
+				textAlign: "center",
+				padding: "2px 8px",
+				".MuiChip-label": {
+					padding: "0px",
+				},
+			};
+			break;
+		case IMAGE_CHAPTER_STATE_TO_STATUS.PROCESSED:
+			labelValue = value;
+			style = {
+				backgroundColor: "#FFEEEE",
+				border: "1px solid #FB7F08",
+				fontWeight: 500,
+				fontSize: "12px",
+				lineHeight: "18px",
+				color: "#FB7F08",
 				height: "22px",
 				textAlign: "center",
 				padding: "2px 8px",

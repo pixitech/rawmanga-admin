@@ -28,7 +28,7 @@ const ChapterEditContainer = () => {
 					breadcrumb: [
 						{
 							title: "Detail Manga",
-							path: -1,
+							path: `/rumanhua/${data?.manga}`,
 						},
 						{
 							title: title ?? "",

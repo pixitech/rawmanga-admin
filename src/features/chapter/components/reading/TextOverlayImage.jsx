@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import { useEffect, useRef } from "react";
 
 const TextOverlayImage = ({ src, fontSize = 30, color, value, isCompare = false }) => {
@@ -9,6 +10,8 @@ const TextOverlayImage = ({ src, fontSize = 30, color, value, isCompare = false 
 		const image = new Image();
 
 		const wrapText = (ctx, text, x, y, maxWidth, boxHeight) => {
+			let font = 16;
+			context.font = `${font}px Arial`;
 			const words = text.split(" ");
 			let line = "";
 			const lines = [];
@@ -23,8 +26,16 @@ const TextOverlayImage = ({ src, fontSize = 30, color, value, isCompare = false 
 				}
 			});
 			lines.push(line);
-			const fontSize = (boxHeight / lines.length) * 0.9;
-			ctx.font = `${fontSize > 30 ? 30 : fontSize}px Arial`;
+			let fontSize = boxHeight / lines.length;
+			while (true) {
+				ctx.font = `${fontSize}px Arial`;
+				const testLineWidth = Math.max(...lines.map((line) => ctx.measureText(line).width));
+				const totalTextHeight = fontSize * lines.length;
+				if (testLineWidth <= maxWidth && totalTextHeight <= boxHeight) {
+					break;
+				}
+				fontSize--;
+			}
 			const lineHeight = fontSize * 1.2;
 			const totalTextHeight = lines.length * lineHeight;
 			const startY = y + (boxHeight - totalTextHeight) / 2 + lineHeight / 2;
@@ -42,8 +53,6 @@ const TextOverlayImage = ({ src, fontSize = 30, color, value, isCompare = false 
 			canvas.height = image.height;
 			context.drawImage(image, 0, 0);
 			value.map((dialogue) => {
-				let font = 25;
-				context.font = `${font}px Arial`;
 				context.textAlign = "center";
 				context.textBaseline = "middle";
 				context.fillStyle = color;
