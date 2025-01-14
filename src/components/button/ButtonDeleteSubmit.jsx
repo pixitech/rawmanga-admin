@@ -1,10 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 
-const ButtonDeleteSubmit = ({ handleChange, label, ...props }) => {
+const ButtonDeleteSubmit = ({ handleChange, label, loading, ...props }) => {
 	return (
 		<Button
 			className="cursor-pointer"
 			onClick={handleChange}
+			loading={loading}
 			sx={{
 				width: "200px",
 				height: "40px",

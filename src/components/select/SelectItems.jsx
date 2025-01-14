@@ -65,8 +65,8 @@ const SelectItems = ({ classCustomer, placeholder, value, handleChangeInput, sel
 		>
 			{selectListData.map((item, index) => {
 				return (
-					<MenuItem value={item?.value} key={index}>
-						{item?.title && item?.title?.length > 30 ? item?.title.slice(0, 48) + "..." : item?.title ?? ""}
+					<MenuItem disabled={Boolean(item.disabled)} value={item?.value} key={index}>
+						{item?.title && item?.title?.length > 30 ? item?.title.slice(0, 48) + "..." : (item?.title ?? "")}
 					</MenuItem>
 				);
 			})}

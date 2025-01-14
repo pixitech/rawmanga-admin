@@ -1,6 +1,13 @@
-import { getChapterById, getImageChapter, getListChapterById, getMangaById, getMangaList } from "@/actions/manga";
+import {
+	changeStatusChapter,
+	getChapterById,
+	getImageChapter,
+	getListChapterById,
+	getMangaById,
+	getMangaList,
+} from "@/actions/manga";
 import { storage } from "@/utils";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 export const useGetMangaList = ({
 	pageSize,
@@ -65,5 +72,12 @@ export const useGetImageChapter = (id) => {
 		queryKey: ["useGetImageChapter", id],
 		queryFn: () => getImageChapter({ id }),
 		enabled: !!id,
+	});
+};
+
+export const useChangeStatusChapter = (config = {}) => {
+	return useMutation({
+		...config,
+		mutationFn: changeStatusChapter,
 	});
 };

@@ -2,7 +2,7 @@ import { Box, Modal, Typography } from "@mui/material";
 import ButtonCancel from "../button/ButtonCancel";
 import ButtonDeleteSubmit from "../button/ButtonDeleteSubmit";
 
-const DeleteModal = ({ open, handleClose, handleSubmit, content, title }) => {
+const DeleteModal = ({ open, handleClose, handleSubmit, content, title, isCancelLoading, isSubmiLoading }) => {
 	return (
 		<Modal open={open} onClose={handleClose}>
 			<Box
@@ -30,8 +30,8 @@ const DeleteModal = ({ open, handleClose, handleSubmit, content, title }) => {
 					{content ?? "Bạn có chắc chắn muốn xóa người dùng này không?"}
 				</Typography>
 				<Box className={"row-center"} gap={"20px"} mt={4}>
-					<ButtonCancel handleChange={handleClose} title="Cancel" />
-					<ButtonDeleteSubmit handleChange={handleSubmit} isHiddenIcon={true} label="Submit" />
+					<ButtonCancel loading={isCancelLoading} handleChange={handleClose} title="Cancel" />
+					<ButtonDeleteSubmit loading={isSubmiLoading} handleChange={handleSubmit} isHiddenIcon={true} label="Submit" />
 				</Box>
 			</Box>
 		</Modal>

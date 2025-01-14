@@ -6,7 +6,7 @@ import InputField from "@/components/form/input-field";
 import SelectField from "@/components/form/select-field";
 import Loading from "@/components/loading";
 import { CHAPTER_STATE, LIST_CHAPTER_STATUS } from "@/constant/title";
-import { useGetImageChapter } from "@/hooks/manga";
+import { useChangeStatusChapter, useGetImageChapter } from "@/hooks/manga";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Box, Grid, Modal, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -14,11 +14,14 @@ import { useParams } from "react-router-dom";
 import { schemaForm2 } from "./const/schema";
 import ListImageChapter from "./list-image-chapter";
 import ReadChapter from "./reading";
+import DeleteModal from "@/components/modal/DeleteModal";
+import MySnackBar from "@/utils/snackbar";
 
 const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 	let { id } = useParams();
 	const { data } = useGetImageChapter(id);
 	const [isPreview, setIsPreview] = useState(false);
+	const [openChangeStatus, setOpenChangeStatus] = useState(null);
 	const [title, setTitle] = useState();
 	const [values, setValues] = useState({
 		id: id,
@@ -31,6 +34,18 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 		type: value?.category_subs?.[0]?.type,
 	});
 	const [isReset, setIsReset] = useState(false);
+
+	const { mutateAsync, isLoading: isLoadingChangeStatusChapter } = useChangeStatusChapter({
+		onError: (message) => {
+			console.log(message);
+			MySnackBar.error({ message: message ?? "Some thing went wrong!" });
+		},
+		onSuccess: (e) => {
+			MySnackBar.success({ message: "Change status successfully!" });
+			refetch();
+			setOpenChangeStatus(null);
+		},
+	});
 
 	useEffect(() => {
 		let avatar = null;
@@ -68,6 +83,10 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 
 	const handlePreviewChapter = () => {
 		setIsPreview(!isPreview);
+	};
+
+	const handleSubmitChangeStatus = () => {
+		mutateAsync({ id: id, status: openChangeStatus });
 	};
 
 	return (
@@ -122,7 +141,15 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 										<Grid item xs={24} md={12}>
 											<Box>
 												<SelectField
-													disabled={true}
+													disabled={[
+														LIST_CHAPTER_STATUS.CRAWLING.key,
+														LIST_CHAPTER_STATUS.CRAWLED.key,
+														LIST_CHAPTER_STATUS.PROCESSING.key,
+													].includes(getValues("status"))}
+													onChangeInput={(e) => {
+														const key = Object.entries(CHAPTER_STATE).find(([key, value]) => value === e)?.[0];
+														setOpenChangeStatus(Number(key));
+													}}
 													label="Status"
 													registration={register("status")}
 													error={errors["status"]}
@@ -131,6 +158,7 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 															value: LIST_CHAPTER_STATUS.CRAWLING.key,
 															title: LIST_CHAPTER_STATUS.CRAWLING.title,
 															class: "input-active",
+															disabled: true,
 														},
 														{
 															value: LIST_CHAPTER_STATUS.CRAWLED.key,
@@ -140,6 +168,7 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 														{
 															value: LIST_CHAPTER_STATUS.PROCESSING.key,
 															title: LIST_CHAPTER_STATUS.PROCESSING.title,
+															disabled: true,
 														},
 														{
 															value: LIST_CHAPTER_STATUS.PROCESSED.key,
@@ -148,10 +177,12 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 														{
 															value: LIST_CHAPTER_STATUS.TRANSLATING.key,
 															title: LIST_CHAPTER_STATUS.TRANSLATING.title,
+															disabled: true,
 														},
 														{
 															value: LIST_CHAPTER_STATUS.TRANSLATED.key,
 															title: LIST_CHAPTER_STATUS.TRANSLATED.title,
+															disabled: true,
 														},
 													]}
 												/>
@@ -228,6 +259,15 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 					</Box>
 				</Box>
 			</Modal>
+			<DeleteModal
+				open={Boolean(openChangeStatus)}
+				handleClose={() => setOpenChangeStatus(null)}
+				handleSubmit={handleSubmitChangeStatus}
+				title={"Change status chapter"}
+				content={"Do you want change status this chapter?"}
+				isCancelLoading={isLoadingChangeStatusChapter}
+				isSubmiLoading={isLoadingChangeStatusChapter}
+			/>
 		</>
 	);
 };

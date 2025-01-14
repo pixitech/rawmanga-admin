@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
 
-const ButtonCancel = ({ handleChange, title }) => {
+const ButtonCancel = ({ handleChange, title, loading }) => {
 	return (
 		<Box
 			className="cursor-pointer"
 			onClick={handleChange}
+			loading={loading}
 			sx={{
 				width: "200px",
 				height: "40px",

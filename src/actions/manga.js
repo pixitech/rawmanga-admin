@@ -59,3 +59,8 @@ export const getImageChapter = async ({ id }) => {
 	let output = await baseService.get(`/images/chapters/${id}/get-all`);
 	return output;
 };
+
+export const changeStatusChapter = async ({ id, status }) => {
+	let output = await baseService.put(`/chapters/change-status/${id}`, { status: status });
+	return output;
+};
