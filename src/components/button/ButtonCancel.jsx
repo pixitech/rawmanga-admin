@@ -1,11 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
-const ButtonCancel = ({ handleChange, title, loading }) => {
+const ButtonCancel = ({ handleChange, title, loading, ...props }) => {
 	return (
-		<Box
+		<Button
 			className="cursor-pointer"
 			onClick={handleChange}
-			loading={loading}
+			disabled={loading}
 			sx={{
 				width: "200px",
 				height: "40px",
@@ -13,6 +13,7 @@ const ButtonCancel = ({ handleChange, title, loading }) => {
 				position: "relative",
 				backgroundImage: "url(/images/button-3.svg)",
 			}}
+			{...props}
 		>
 			<Box
 				sx={{
@@ -27,11 +28,15 @@ const ButtonCancel = ({ handleChange, title, loading }) => {
 					color: "#FFFFFF",
 				}}
 			>
-				<Typography variant="body1" fontFamily={600} fontSize={"16px"}>
-					{title ?? "Tìm kiếm"}
-				</Typography>
+				{loading ? (
+					<span className="loader"></span>
+				) : (
+					<Typography variant="body1" fontFamily={600} fontSize={"16px"}>
+						{title ?? "Tìm kiếm"}
+					</Typography>
+				)}
 			</Box>
-		</Box>
+		</Button>
 	);
 };
 

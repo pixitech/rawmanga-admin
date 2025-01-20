@@ -5,7 +5,7 @@ const ButtonDeleteSubmit = ({ handleChange, label, loading, ...props }) => {
 		<Button
 			className="cursor-pointer"
 			onClick={handleChange}
-			loading={loading}
+			disabled={loading}
 			sx={{
 				width: "200px",
 				height: "40px",
@@ -29,9 +29,13 @@ const ButtonDeleteSubmit = ({ handleChange, label, loading, ...props }) => {
 					gap: "8px",
 				}}
 			>
-				<Typography variant="h6" fontSize={"16px"}>
-					{label ?? "Xác nhận"}
-				</Typography>
+				{loading ? (
+					<span className="loader"></span>
+				) : (
+					<Typography variant="h6" fontSize={"16px"}>
+						{label ?? "Xác nhận"}
+					</Typography>
+				)}
 			</Box>
 		</Button>
 	);

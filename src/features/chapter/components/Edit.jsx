@@ -39,6 +39,7 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 		onError: (message) => {
 			console.log(message);
 			MySnackBar.error({ message: message ?? "Some thing went wrong!" });
+			setValues({ status: CHAPTER_STATE[value?.state] });
 		},
 		onSuccess: (e) => {
 			MySnackBar.success({ message: "Change status successfully!" });
@@ -100,7 +101,7 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 					...values,
 				}}
 			>
-				{({ register, formState: { errors }, getValues }) => {
+				{({ register, formState: { errors }, getValues, setValue }) => {
 					return (
 						<>
 							<CardContainer mb={2.5}>
@@ -213,6 +214,20 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 									</Grid>
 								</Box>
 							</CardContainer>
+							<DeleteModal
+								open={Boolean(openChangeStatus)}
+								handleClose={() => {
+									if (!isLoadingChangeStatusChapter) {
+										setOpenChangeStatus(null);
+										setValue("status", CHAPTER_STATE[value?.state]);
+									}
+								}}
+								handleSubmit={handleSubmitChangeStatus}
+								title={"Change status chapter"}
+								content={"Do you want change status this chapter?"}
+								isCancelLoading={isLoadingChangeStatusChapter}
+								isSubmiLoading={isLoadingChangeStatusChapter}
+							/>
 						</>
 					);
 				}}
@@ -259,15 +274,6 @@ const EditComponent = ({ value, isLoadingDefault, refetch }) => {
 					</Box>
 				</Box>
 			</Modal>
-			<DeleteModal
-				open={Boolean(openChangeStatus)}
-				handleClose={() => setOpenChangeStatus(null)}
-				handleSubmit={handleSubmitChangeStatus}
-				title={"Change status chapter"}
-				content={"Do you want change status this chapter?"}
-				isCancelLoading={isLoadingChangeStatusChapter}
-				isSubmiLoading={isLoadingChangeStatusChapter}
-			/>
 		</>
 	);
 };
