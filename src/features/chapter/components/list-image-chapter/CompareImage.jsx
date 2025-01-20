@@ -3,7 +3,7 @@ import TextOverlayImage from "../reading/TextOverlayImage";
 
 const CompareImage = ({ comicList, isPreview }) => {
 	const result = isPreview?.local_path?.split("/static/")[1];
-
+	const base_url = import.meta.env.VITE_BASE_URL;
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 			<Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
@@ -12,7 +12,7 @@ const CompareImage = ({ comicList, isPreview }) => {
 			</Box>
 
 			<Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
-				<img src={`http://75.119.137.187:8080/get-image/${result}`} alt="Original Image" width={"48%"} />
+				<img src={`${base_url}/get-image/${result}`} alt="Original Image" width={"48%"} />
 				<TextOverlayImage
 					src={comicList[isPreview?.index - 1]?.url}
 					value={comicList[isPreview?.index - 1]?.text_coordinates}
